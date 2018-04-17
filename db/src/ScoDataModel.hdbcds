@@ -1,0 +1,9 @@
+@OData.publish : true
+context ScoDataModel {
+    entity REGION {
+        key REGION_NAME : String(100);
+    }
+    technical configuration {
+        column store;
+    };
+};
