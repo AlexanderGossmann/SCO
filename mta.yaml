@@ -12,7 +12,7 @@ modules:
     type: hdb
     path: db
     requires:
-     - name: hdi_db
+     - name: hdi_db 
 
 resources:
   - name: UAA-service
