@@ -4,10 +4,6 @@ context ScoDataModel {
         key REGION_NAME : String(100);
     }
     technical configuration {
-<<<<<<< HEAD
         column store; 
-=======
-        column store;
->>>>>>> refs/heads/master
     };
 };
