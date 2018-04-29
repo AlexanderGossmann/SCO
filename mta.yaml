@@ -13,6 +13,9 @@ modules:
           name: core-xsjs-backend
           url: '~{url}'
           forwardAuthToken: true
+      - name: ui5-lib
+        properties:
+          ui5liburl: '~{url}'
   - name: db
     type: hdb
     path: db
@@ -41,3 +44,9 @@ resources:
     properties:
       hdi-container-name: '${service-name}'
     type: com.sap.xs.hdi-container
+  - name: ui5-lib
+    type: configuration
+    description: 'SAPUI5 central service > vers. 1.44'
+    parameters:
+      provider-id: 'com.sap.ui5.dist.sapui5-dist-xsa.XSAC_UI5_FESV3:sapui5_fesv3'
+      version: '>=1.44.8'

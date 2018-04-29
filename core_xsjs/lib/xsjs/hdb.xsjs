@@ -1,15 +1,13 @@
 "use strict";
 
 var conn = $.hdb.getConnection();
-var query = "SELECT * FROM ScoDataModel.REGION";
+var query = "SELECT  FROM ScoDataModel.REGION{REGION_NAME}";
 var rs = conn.executeQuery(query);
 
 var body = "";
-for(var item of rs){
-   if(item.Amount >= 500){
-	body += item.PurchaseOrderItemId + "\t" +
-			item.ProductID + "\t" + item.Amount + "\n";
-   }
+while(rs.next()){
+   	body += rs[0].REGION_NAME + "\n" ;
+   
 }
 
 $.response.setBody(body);
