@@ -1,0 +1,18 @@
+<core:View xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" controllerName="WebContent.controller.App" class="sapUiSizeCompact"><Page id="oScoPage" title="Credit Limit Workflow" class="sapUiContentPadding" showNavButton="false">
+
+	<content>
+
+	    <InputListItem type="Navigation" label="Input List Item" id="__item3">
+
+	        <content>
+
+	            <Input ariaLabelledBy="__item3-label" value="input" width="100%" id="__input4"/>
+
+	        </content>
+
+	    </InputListItem>
+
+	</content>
+
+	</Page>
+</core:View>
