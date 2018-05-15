@@ -21,6 +21,10 @@ modules:
     path: db
     requires:
       - name: hdi_db
+      - name: hdi-container
+        properties:
+          TARGET-CONTAINER: '~{hdi-container-service}'
+      - name: SCO-table-grantor
   - name: core_xsjs
     type: nodejs
     path: core_xsjs
@@ -41,9 +45,12 @@ resources:
     parameters:
       config:
         schema: HANA2
-    properties:
-      hdi-container-name: '${service-name}'
+  - name: hdi-container
     type: com.sap.xs.hdi-container
+    properties:
+      hdi-container-service: '${service-name}'
+  - name: SCO-table-grantor
+    type: org.cloudfoundry.existing-service
   - name: ui5-lib
     type: configuration
     description: 'SAPUI5 central service > vers. 1.44'

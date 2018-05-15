@@ -1,0 +1,14 @@
+{
+  "SCO-table-grantor": {
+     "object_owner": {
+           "roles": [
+               "SCO::external_access_g"
+           ]
+     },
+     "application_user": {
+           "roles": [
+               "SCO::external_access_appuser"
+           ]
+     }
+  }
+}
