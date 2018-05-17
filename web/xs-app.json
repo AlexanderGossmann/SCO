@@ -15,16 +15,8 @@
 		 "localDir" : "resources",
 		 "authenticationType" : "xsuaa",
 		 "replace" : {
-<<<<<<< HEAD
-<<<<<<< HEAD
-		   "pathSuffixes" : ["index.html"],
-=======
-		   "pathSuffixes" : ["index.html", "odataTest.html"],
->>>>>>> refs/heads/master
-=======
-		   "pathSuffixes" : ["index.html", "odataTest.html"],
->>>>>>> refs/remotes/origin/master
-		   "vars" : ["ui5liburl"]
+		 "pathSuffixes" : ["index.html", "odataTest.html"],
+		  "vars" : ["ui5liburl"]
 		 }
 		 }]
  }

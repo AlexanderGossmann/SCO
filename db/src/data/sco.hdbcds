@@ -1,0 +1,15 @@
+using SCO_DATA as SCO_TABLE;
+
+context sco {
+	define view SCO_VIEW as 
+		select from SCO_TABLE
+		distinct{
+		"CREDIT_MANAGER",
+		"REGION",
+		"CUSTOMER_GROUP",
+		"COUNTRY",
+		"TOP_OD",
+		"AUTOMATION_STATUS_CURRENT"
+		};
+
+};
