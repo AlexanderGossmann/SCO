@@ -13,7 +13,7 @@ sap.ui.jsview("WebContent.view.App", {
 		this.app = new sap.m.App("idAppControl");
 		
 		// load the list page
-		var list = sap.ui.xmlview("App", "WebContent.view.App");
+		var list = sap.ui.xmlview("WorkList", "WebContent.view.WorkList");
 		list.getController().nav = this.getController();
 		this.app.addPage(list, true);
 		

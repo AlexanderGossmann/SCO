@@ -1,0 +1,143 @@
+<core:View xmlns="sap.m" xmlns:t="sap.ui.table" xmlns:u="sap.ui.unified" 
+xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" 
+xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" 
+controllerName="WebContent.controller.WorkList" class="sapUiSizeCompact">
+	<Page id="oScoPage" title="Credit Limit Workflow" class="sapUiContentPadding" showNavButton="false">
+
+<List
+		headerText="Selection" id="oListORG" visible="true" width="60%">
+				
+	<InputListItem label="Region" >
+	<MultiComboBox id="oRegionBox" selectionChange="onRegionSelectionChange" 
+		selectionFinish="onRegionSelectionFinish" width="100%"
+		placeholder="All         ">
+	</MultiComboBox>
+	</InputListItem>
+
+	<InputListItem label="Credit Manager" id="oIListCM" visible="true">
+	<MultiComboBox id="oCMBox" selectionChange="onCMSelectionChange" 
+		selectionFinish="onCMSelectionFinish" width="100%"
+		placeholder="All         ">
+	</MultiComboBox>
+	</InputListItem>
+	
+	<InputListItem label="Country" id="oIListCountry" visible="true">
+	<MultiComboBox id="oCountryBox" selectionChange="onCountrySelectionChange" 
+		selectionFinish="onCountrySelectionFinish" width="100%"
+		placeholder="All         ">
+	</MultiComboBox>
+	</InputListItem>	
+
+	<InputListItem label="Operating Division" id="oIListOD" visible="true">
+	<MultiComboBox id="oODBox" selectionChange="onODSelectionChange" 
+		selectionFinish="onODSelectionFinish" width="100%"
+		placeholder="All         ">
+	</MultiComboBox>
+	</InputListItem>
+	
+	<InputListItem label="Automated" id="oIListAuto" visible="true">
+	<MultiComboBox id="oAutoBox" selectionChange="onAutoSelectionChange" 
+		selectionFinish="onAutoSelectionFinish" width="100%"
+		placeholder="All         ">
+	</MultiComboBox>
+	</InputListItem>
+	</List>
+<Button id="viewTableButton" width="150px"  text="Apply Selection"  icon="sap-icon://filter" press="onSelectTable" />
+
+			<t:Table
+				id="oWLTable"
+				selectionMode="MultiToggle"
+				rows="{/result}"
+				visible="false"
+				visibleRowCount="21"
+				enableCellFilter="{ui>/cellFilterOn}"
+				filter="onFilterIndicator"
+				rowSelectionChange="onSelectionChange"
+				width="100%">
+				<t:toolbar>
+					<Toolbar>
+						<Title id="oExtIndTitle"></Title>
+						<ToolbarSpacer/>
+						<ToggleButton
+							id='oToggleButtonSelInd'
+							icon="sap-icon://complete"
+							tooltip="Show Selected Indicators only"
+							press="onToggleFilter"
+							pressed="{ui>/filterOn}"/>
+
+					</Toolbar>
+				</t:toolbar>
+				<t:columns>
+					<t:Column
+						width="10%"
+						filterProperty="WL_TRIGGER_CODE"
+						>
+						<Label text="WL Item" />
+						<t:template>
+							<Text text="{WL_TRIGGER_CODE}" textAlign="Start"/>
+						</t:template>
+					</t:Column>
+					<t:Column
+						width="10%"
+						filterProperty="READ_STATUS">
+						<Label text="Read" />
+						<t:template>
+							<Text text="{READ_STATUS}"/>
+						</t:template>
+					</t:Column>
+					<t:Column
+						width="15%"
+						filterProperty="DATE_CURRENT">
+						<Label text="Creation Date" />
+						<t:template>
+							<Text text="{DATE_CURRENT}"/>
+						</t:template>
+					</t:Column>
+					<t:Column
+						width="20%"
+						filterProperty="WL_VALIDITY">
+						<Label text="Completion" />
+						<t:template>
+							<Text text="{WL_VALIDITY}"/>
+						</t:template>
+					</t:Column>
+					<t:Column
+						width="10%"
+						filterProperty="REQUISITE">
+						<Label text="Task Type" />
+						<t:template>
+							<Text text="{REQUISITE}"/>
+						</t:template>
+					</t:Column>
+					<t:Column
+						width="10%"
+						filterProperty="AUTOMATION_STATUS_CURRENT">
+						<Label text="Status" />
+						<t:template>
+							<Text text="{AUTOMATION_STATUS_CURRENT}"/>
+						</t:template>
+					</t:Column>
+					<t:Column
+						width="15%"
+						filterProperty="WL_CATEGORY">
+						<Label text="Category" />
+						<t:template>
+							<Text text="{WL_CATEGORY}"/>
+						</t:template>
+					</t:Column>
+					<t:Column
+						width="15%"
+						filterProperty="REQUIRED_ACTION">
+						<Label text="Worklist trigger" />
+						<t:template>
+							<Text text="{REQUIRED_ACTION}"/>
+						</t:template>
+					</t:Column>
+				</t:columns>
+			</t:Table>
+		
+
+	
+
+	</Page>
+</core:View>
