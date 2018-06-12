@@ -221,8 +221,8 @@ sap.ui.controller("WebContent.controller.WorkList", {
 	     var oWLTable = this.getView().byId("oWLTable");
 		
 	  
-			var sUrl = "../xsjs/workList.xsjs?"
-						+ "cm=" + strCM;
+			var sUrl = "../xsjs/workListTree.xsjs?"
+						+ "cm=" + strCM; 
 			   
 			jQuery.ajax({
 	                url: sUrl,
