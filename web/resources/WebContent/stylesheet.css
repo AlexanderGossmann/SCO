@@ -1,0 +1,28 @@
+.sapMShellGlobalInnerBackground,.sapUiGlobalBackgroundColor, .sapUiUfdShellBackground, .sapMGlobalBackgroundColor {
+            background-color: transparent !important;
+            background-image: none !important;
+}
+
+.tileStyle{
+	border-radius: 3px;
+    box-shadow: 0 0 0.125rem 0 rgba(0,0,0,0.3);
+}
+
+.tileHeaderStyle{
+	font-size: 1rem;
+	margin-bottom: 0.5rem;
+}
+
+.centerAlignInTile{
+	top: 22%;
+	position: relative;
+}
+
+.numericContentPosition{
+	float:right;
+	right: 12%;
+}
+
+.removePadding{
+	padding: 0px;
+}

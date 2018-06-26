@@ -1,12 +1,23 @@
 <core:View xmlns="sap.m" xmlns:t="sap.ui.table" xmlns:u="sap.ui.unified" 
 xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" 
+xmlns:mc="sap.suite.ui.microchart"
+xmlns:c="sap.suite.ui.commons"
+xmlns:l="sap.ui.layout"
 xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" 
 controllerName="WebContent.controller.WorkList" class="sapUiSizeCompact">
-	<Page id="oScoPage" title="Credit Limit Workflow" class="sapUiContentPadding" showNavButton="false">
+	<Page id="oScoPage" title="Worklist" class="sapUiContentPadding" showNavButton="false">
+	<l:Grid defaultSpan="L3 M6 S12" class="sapUiSmallMarginTop">
+		<l:content>
 
-<List
-		headerText="Selection" id="oListORG" visible="true" width="60%">
-				
+	<List id="oListORG" visible="true" width="100%">
+
+		<InputListItem label="Date" >
+	<DatePicker
+			id="DP2"
+			value="2018-06-21" valueFormat="yyyy-MM-dd" displayFormat="long"
+			change="handleChange"
+			/>
+			</InputListItem>			
 	<InputListItem label="Region" >
 	<MultiComboBox id="oRegionBox" selectionChange="onRegionSelectionChange" 
 		selectionFinish="onRegionSelectionFinish" width="100%"
@@ -41,19 +52,77 @@ controllerName="WebContent.controller.WorkList" class="sapUiSizeCompact">
 		placeholder="All         ">
 	</MultiComboBox>
 	</InputListItem>
-	</List>
-<Button id="viewTableButton" width="150px"  text="Apply Selection"  icon="sap-icon://filter" press="onSelectTable" />
 
+	</List>
+	<Panel class="tileStyle" height="11rem" backgroundDesign="Solid">
+		<content>
+			<Label text="Customer Overview" class="tileHeaderStyle"/>
+			<mc:ComparisonMicroChart size="S" width="100%" class="sapUiRFLContainer" press="press" 
+				colorPalette="#156489, #1b7eac, #27a3dd, #5cbae5, #84caec, #abdbf2" >
+				<mc:data>
+					<mc:ComparisonMicroChartData	title="Existing Customer" value="58.8"  press="pressBar"  />
+					<mc:ComparisonMicroChartData	title="Inactive Customer" value="19.6"  press="pressBar" />
+					<mc:ComparisonMicroChartData	title="Protentialy Inactive Customer" value="7.8"  press="pressBar" />
+					<mc:ComparisonMicroChartData	title="Customer without recent Exposure" value="7.8"  press="pressBar" />
+					<mc:ComparisonMicroChartData	title="New Customer" value="5.9"  press="pressBar" />
+				</mc:data>
+			</mc:ComparisonMicroChart>
+		</content>
+	</Panel>
+
+
+	<Panel class="tileStyle" height="11rem" backgroundDesign="Solid">
+		<content>
+			<Label text="Mandatory Items" class="tileHeaderStyle"/>
+			<l:Grid defaultSpan="L6 M6 S6" class="centerAlignInTile" hSpacing="0">
+					<NumericContent value="28" class="numericContentPosition sapUiNoMargin"
+						valueColor="Error" indicator="Up" />
+					<mc:ComparisonMicroChart size="S"  press="press" width="100%"
+						colorPalette="#dc0d0e, 	#f33334, #f99494" >
+						<mc:data>
+							<mc:ComparisonMicroChartData	title="Bad Events" value="12" />
+							<mc:ComparisonMicroChartData	title="Bad Scoring re-classification" value="10" />
+							<mc:ComparisonMicroChartData	title="Credit Limit not sufficient" value="6"  />
+						</mc:data>
+					</mc:ComparisonMicroChart>
+			</l:Grid>
+		</content>
+	</Panel>
+		
+
+	<GenericTile header="Proposal for automation"
+		 press="press">
+		<tileContent>
+			<TileContent footer="Wide Mode" frameType="TwoByOne">
+				<content>
+						<NumericContent value="15" valueColor="Good" indicator="Up" />
+				</content>
+			</TileContent>
+		</tileContent>
+		
+	</GenericTile>
+
+
+		
+	</l:content>
+</l:Grid>	
+<l:HorizontalLayout class="sapUiSmallMargin" >
+<Button id="viewTableButton" width="32em"  text="Apply Selection" class="sapUiSmallMargin"  icon="sap-icon://filter" press="onSelectTable" />
+
+
+	</l:HorizontalLayout>		
+	
 			<t:TreeTable
 				id="oWLTable"
 				selectionMode="MultiToggle"
 				rows="{/result}"
 				visible="false"
-				visibleRowCount="21"
+				
 				enableCellFilter="{ui>/cellFilterOn}"
 				filter="onFilterIndicator"
 				rowSelectionChange="onSelectionChange"
-				width="100%">
+				width="100%"
+				fixedColumnCount="3">
 				<t:toolbar>
 					<Toolbar>
 						<Title id="oExtIndTitle"></Title>
@@ -69,33 +138,33 @@ controllerName="WebContent.controller.WorkList" class="sapUiSizeCompact">
 				</t:toolbar>
 				<t:columns>
 					<t:Column
-						width="15%"
+						width="4%"
 						filterProperty="CREDIT_MANAGER"
 						>
-						<Label text="CMMgr" />
+						<Label text="Credit Manager" />
 						<t:template>
 							<Text text="{CREDIT_MANAGER}" textAlign="Start"/>
 						</t:template>
 					</t:Column>
 					<t:Column
-						width="5%"
-						filterProperty="WL_TRIGGER_CODE"
+						width="4%"
+						filterProperty="BUSINESS_PARTNER_ID"
 						>
-						<Label text="WL Item" />
+						<Label text="Business Partner" />
 						<t:template>
-							<Text text="{WL_TRIGGER_CODE}" textAlign="Start"/>
+							<Text text="{BUSINESS_PARTNER_ID}" textAlign="Start"/>
+						</t:template>
+					</t:Column>
+					<t:Column
+						width="10%"
+						filterProperty="BUSINESS_PARTNER_NAME">
+						<Label text="Partner Name" />
+						<t:template>
+							<Text text="{BUSINESS_PARTNER_NAME}"/>
 						</t:template>
 					</t:Column>
 					<t:Column
 						width="7%"
-						filterProperty="READ_STATUS">
-						<Label text="Read" />
-						<t:template>
-							<Text text="{READ_STATUS}"/>
-						</t:template>
-					</t:Column>
-					<t:Column
-						width="8%"
 						filterProperty="DATE_CURRENT">
 						<Label text="Creation Date" />
 						<t:template>
@@ -103,15 +172,7 @@ controllerName="WebContent.controller.WorkList" class="sapUiSizeCompact">
 						</t:template>
 					</t:Column>
 					<t:Column
-						width="8%"
-						filterProperty="WL_VALIDITY">
-						<Label text="Completion" />
-						<t:template>
-							<Text text="{WL_VALIDITY}"/>
-						</t:template>
-					</t:Column>
-					<t:Column
-						width="10%"
+						width="7%"
 						filterProperty="REQUISITE">
 						<Label text="Task Type" />
 						<t:template>
@@ -119,29 +180,64 @@ controllerName="WebContent.controller.WorkList" class="sapUiSizeCompact">
 						</t:template>
 					</t:Column>
 					<t:Column
-						width="10%"
+						width="5%"
 						filterProperty="AUTOMATION_STATUS_CURRENT">
 						<Label text="Status" />
 						<t:template>
 							<Text text="{AUTOMATION_STATUS_CURRENT}"/>
 						</t:template>
 					</t:Column>
+					
 					<t:Column
 						width="15%"
 						filterProperty="WL_CATEGORY">
-						<Label text="Category" />
+						<Label text="Worklist Category" />
 						<t:template>
 							<Text text="{WL_CATEGORY}"/>
 						</t:template>
 					</t:Column>
+					
+				
+					
+					
+					
 					<t:Column
-						width="22%"
+						width="25%"
 						filterProperty="REQUIRED_ACTION">
 						<Label text="Worklist trigger" />
 						<t:template>
 							<Text text="{REQUIRED_ACTION}"/>
 						</t:template>
 					</t:Column>
+					
+					
+					<t:Column
+						width="20%"
+						filterProperty="REQUIRED_ACTION">
+						<Label text="Required Action" />
+						<t:template>
+							<Text text="{REQUIRED_ACTION}"/>
+						</t:template>
+					</t:Column>
+					
+					<t:Column
+						width="5%"
+						filterProperty="BASF_RISK_RATING">
+						<Label text="BASF Risk Rating" />
+						<t:template>
+							<Text text="{BASF_RISK_RATING}"/>
+						</t:template>
+					</t:Column>
+					
+					<t:Column
+						width="5%"
+						filterProperty="PAYMENT_BEHAVIOUR">
+						<Label text="Scoring" />
+						<t:template>
+							<Text text="{PAYMENT_BEHAVIOUR}"/>
+						</t:template>
+					</t:Column>
+					
 				</t:columns>
 			</t:TreeTable>
 		

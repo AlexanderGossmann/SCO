@@ -72,7 +72,14 @@
     	"config": {
     		"type": "sap.ui.model.json.JSONModel"
     	}
-    }
+    },
+	"resources": {
+	  "css": [
+		{
+		  "uri": "stylesheet.css"
+		}
+	  ]
+	}
 
   }
 }

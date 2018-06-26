@@ -6,7 +6,9 @@ var arrSearch = [];
 
 var cm = $.request.parameters.get("cm");
 
-var qry = 'SELECT distinct credit_manager, WL_TRIGGER_CODE, read_status, date_current, wl_validity, requisite,   automation_status_current, wl_category, required_action FROM "SCO"."SampleData2"';
+var qry = 'SELECT distinct credit_manager, WL_TRIGGER_CODE, read_status,  business_partner_id, business_partner_name, date_current, requisite, '; 
+	qry += 'automation_status_current, wl_category, wl_validity, required_action, basf_risk_rating, payment_behaviour ';
+	qry += 'FROM "SCO"."SampleData3"';
 
 if (cm === ''){
 	qry += "where credit_manager not in (";
@@ -36,7 +38,6 @@ var arrH = [];
 	for (var j = 0; j < rs.length; j++) {
 		var obj = {};
 		var objH = {};
-		var bool = false;
 		try{
 		var vals = Object.values(Object(rs[j]));
 		var keys = Object.keys(Object(rs[j])); 
@@ -50,7 +51,8 @@ var arrH = [];
 		if(val !== prev_val){
 			
 			objH[key] = val;
-			arrH.push(objH, arr);	
+			
+			arrH.push(objH, arr);
 	   	
 	   		} 
 	   	
